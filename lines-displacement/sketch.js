@@ -1,8 +1,8 @@
 const size = 400;
-const steps = 20
+const steps = 30
 const unit_size = size / steps;
-const dval = 3;
-const rmult = 6;
+const dval = 2;
+const rmult = 9;
 
 function setup() {
     createCanvas(size, size);
