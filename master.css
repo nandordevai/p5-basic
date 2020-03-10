@@ -15,3 +15,8 @@ body {
     outline: 15px solid black;
     box-shadow: 17px 17px 10px #333c;
 }
+
+.label {
+    font-family: "Helvetica Light", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
