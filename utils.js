@@ -4,7 +4,7 @@ function createControls(controls) {
         s.position(100, 200 + i * 30);
         const l = createDiv(c.label);
         l.class('label');
-        l.position(50, 198 + i * 30);
+        l.position(40, 198 + i * 30);
         s.input(() => {
             if (c.callback) {
                 c.callback(s);
