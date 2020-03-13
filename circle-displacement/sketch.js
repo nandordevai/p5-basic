@@ -49,7 +49,6 @@ function setup() {
 }
 
 function draw() {
-    // TODO: 3d noise space
     background(255);
     noLoop();
     stroke(0);
