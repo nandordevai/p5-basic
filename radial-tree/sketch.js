@@ -56,6 +56,7 @@ function setup() {
     createControls(controls);
     noFill();
     angleMode(DEGREES);
+    colorMode(HSL);
 }
 
 function draw() {
@@ -68,7 +69,9 @@ function draw() {
     for (let i = 0; i < 360; i += alpha) {
         v.rotate(alpha * rho);
         stroke(
-            map(noise(i / 50), 0, 1, 0, 200),
+            map(noise(i / 500), 0, 1, 0, 360),
+            40,
+            50
         );
         line(0, 0, v.x, v.y);
         drawBranchesFromTrunk(v);
