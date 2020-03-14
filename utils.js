@@ -1,10 +1,11 @@
 function createControls(controls) {
     controls.forEach((c, i) => {
-        const s = createSlider(c.min, c.max, c.default);
-        s.position(120, 200 + i * 30);
+        const s = createSlider(c.min, c.max, c.default, c.steps);
+        const top = 50;
+        s.position(120, top + i * 30);
         const l = createDiv(c.label);
         l.class('label');
-        l.position(50, 198 + i * 30);
+        l.position(50, top - 2 + i * 30);
         s.input(() => {
             if (c.callback) {
                 c.callback(s);
