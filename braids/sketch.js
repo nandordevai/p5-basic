@@ -1,5 +1,5 @@
 const size = 400;
-const steps = 15;
+const steps = 10;
 const tile_size = size / steps;
 let colors = Array(steps * 2);
 const sat = 40;
@@ -7,15 +7,16 @@ const light = 60;
 
 function setup() {
     createCanvas(size, size);
+    background(0);
     noFill();
-    strokeWeight(3);
+    strokeWeight(5);
     colorMode(HSL);
     colors = [...colors].map((_, i) => map(i, 0, steps * 2 - 1, 0, 360));
 }
 
 function drawTile(braidType, i) {
     const x = tile_size / 4;
-    const curve = 10;
+    const curve = 15;
     let _ = null;
     switch (braidType) {
         case 'straight':
@@ -32,6 +33,7 @@ function drawTile(braidType, i) {
                 x * 3, tile_size - curve, // control 2
                 x * 3, tile_size          // anchor 2
             );
+            drawShadow(tile_size / 2, tile_size / 2);
             stroke(colors[i + 1], sat, light);
             bezier(
                 x * 3, 0,             // anchor 1
@@ -39,9 +41,7 @@ function drawTile(braidType, i) {
                 x, tile_size - curve, // control 2
                 x, tile_size          // anchor 2
             );
-            _ = colors[i];
-            colors[i] = colors[i + 1];
-            colors[i + 1] = _;
+            [colors[i], colors[i + 1]] = [colors[i + 1], colors[i]];
             break;
         case 'cross_right':
             stroke(colors[i], sat, light);
@@ -53,6 +53,7 @@ function drawTile(braidType, i) {
                 x * 5, tile_size - curve, // control 2
                 x * 5, tile_size          // anchor 2
             );
+            drawShadow(tile_size, tile_size / 2);
             // do not swap colors here, cross_left handles it
             break;
         case 'cross_left':
@@ -65,13 +66,21 @@ function drawTile(braidType, i) {
                 -x, tile_size - curve, // control 2
                 -x, tile_size          // anchor 2
             );
-            _ = colors[i];
-            colors[i] = colors[i - 1];
-            colors[i - 1] = _;
+            [colors[i], colors[i - 1]] = [colors[i - 1], colors[i]];
             break;
         default:
             break;
     }
+}
+
+function drawShadow(x, y) {
+    stroke(100, 0, 0, 0.5);
+    push();
+    translate(x + 1, y + 1);
+    angleMode(DEGREES);
+    rotate(40);
+    rect(-2, -2, 3, 4);
+    pop();
 }
 
 function generateRow() {
