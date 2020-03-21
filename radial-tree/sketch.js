@@ -80,24 +80,18 @@ function draw() {
 }
 
 function drawBranchesFromTrunk(v) {
+    [1, -1].forEach(m => { drawBranchWithPhi(m * phi, v) });
+}
+
+function drawBranchWithPhi(phi, v) {
     push();
     translate(v.x, v.y);
-    v1 = v.copy();
-    v1.mult(m);
-    v1.rotate(-phi * random() * phiVar);
-    line(0, 0, v1.x, v1.y);
-    if (v1.mag() > 10) {
-        drawBranchesFromTrunk(v1);
-    }
-    pop();
-    push();
-    translate(v.x, v.y);
-    v2 = v.copy();
-    v2.mult(m);
-    v2.rotate(phi * random() * phiVar);
-    line(0, 0, v2.x, v2.y);
-    if (v2.mag() > 10) {
-        drawBranchesFromTrunk(v2);
+    v_ = v.copy();
+    v_.mult(m);
+    v_.rotate(phi * random() * phiVar);
+    line(0, 0, v_.x, v_.y);
+    if (v_.mag() > 10) {
+        drawBranchesFromTrunk(v_);
     }
     pop();
 }
